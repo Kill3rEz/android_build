@@ -508,10 +508,9 @@ endif
 # PenguinOS: include the Lineage kernel board config (BoardConfigKernel + BoardConfigSoong)
 # the same way LineageOS/Axion do (their build/core/config.mk includes it directly, see
 # Axion build/make/core/config.mk:478). This is the graft that lets kernel/oneplus/sm8750
-# build in-tree via vendor/lineage/build/tasks/kernel.mk on an AOSPA base. No-op if absent.
-ifneq ($(wildcard vendor/lineage/config/BoardConfigLineage.mk),)
+# build in-tree via vendor/lineage/build/tasks/kernel.mk on an AOSPA base. Hard include on
+# purpose: if vendor/lineage is missing the build must fail here, not silently build no kernel.
 include vendor/lineage/config/BoardConfigLineage.mk
-endif
 
 # The build system exposes several variables for where to find the kernel
 # headers:
